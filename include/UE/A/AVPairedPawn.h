@@ -48,7 +48,7 @@ namespace UE
 		public IVAudioPlayable
 	{
 	public:
-		UE_DEFINE_UOBJECT("Altar", "VPairedPawn");
+		UE_DEFINE_UOBJECT(AVPairedPawn, ACharacter, "Altar", "VPairedPawn");
 
 		// override
 		virtual ~AVPairedPawn();  // 00

@@ -8,7 +8,7 @@ namespace UE
 		public UTESForm
 	{
 	public:
-		UE_DEFINE_UOBJECT("Altar", "TESPackage");
+		UE_DEFINE_UOBJECT(UTESPackage, UTESForm, "Altar", "TESPackage");
 
 		// override
 		virtual ~UTESPackage();  // 00

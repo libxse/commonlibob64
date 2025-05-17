@@ -9,6 +9,10 @@ namespace UE
 	{
 	public:
 		FString() = default;
+		FString(FString&&) = default;
+		FString(const FString&) = default;
+		FString& operator=(FString&&) = default;
+		FString& operator=(const FString&) = default;
 
 		FString(const char* a_str)
 		{
@@ -22,6 +26,11 @@ namespace UE
 			using func_t = void (*)(FString*, const wchar_t*);
 			static REL::Relocation<func_t> func{ ID::FString::Ctor2 };
 			func(this, a_str);
+		}
+
+		bool IsEmpty() const
+		{
+			return data.Num() <= 1;
 		}
 
 		std::int32_t Len() const
@@ -79,6 +88,31 @@ namespace UE
 			return !Equals(a_rhs, ESearchCase::IgnoreCase);
 		}
 
+		bool operator==(const wchar_t* a_rhs) const
+		{
+			return _wcsicmp(**this, a_rhs) == 0;
+		}
+
+		bool operator!=(const wchar_t* a_rhs) const
+		{
+			return _wcsicmp(**this, a_rhs) != 0;
+		}
+
+		friend bool operator==(const wchar_t* a_lhs, const FString& a_rhs)
+		{
+			return _wcsicmp(a_lhs, *a_rhs) == 0;
+		}
+
+		friend bool operator!=(const wchar_t* a_lhs, const FString& a_rhs)
+		{
+			return _wcsicmp(a_lhs, *a_rhs) != 0;
+		}
+
+		const wchar_t* operator*() const
+		{
+			return data.Num() ? data.GetData() : L"";
+		}
+
 		// members
 		TArray<wchar_t> data;  // 00
 	};
@@ -86,13 +120,12 @@ namespace UE
 }
 
 template <>
-struct std::formatter<UE::FString, wchar_t> : formatter<std::wstring, wchar_t>
+struct std::formatter<UE::FString, wchar_t> : formatter<const wchar_t*, wchar_t>
 {
 	template <class FormatContext>
 	constexpr auto format(const UE::FString& a_str, FormatContext& a_ctx) const
 	{
-		std::wstring str(a_str.begin(), a_str.end());
-		return formatter<std::wstring, wchar_t>::format(str, a_ctx);
+		return formatter<const wchar_t*, wchar_t>::format(*a_str, a_ctx);
 	}
 };
 

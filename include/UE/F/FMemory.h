@@ -36,5 +36,12 @@ namespace UE
 		{
 			Memcpy(&a_dst, &a_src, sizeof(T));
 		}
+
+		static std::size_t QuantizeSize(std::size_t a_count, std::uint32_t a_alignment = 0)
+		{
+			using func_t = decltype(&FMemory::QuantizeSize);
+			static REL::Relocation<func_t> func{ ID::FMemory::QuantizeSize };
+			return func(a_count, a_alignment);
+		}
 	};
 }

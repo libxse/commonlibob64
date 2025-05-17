@@ -9,7 +9,7 @@ namespace UE
 	class IVTransformPairable
 	{
 	public:
-		UE_DEFINE_IINTERFACE("Altar", "VTransformPairable");
+		UE_DEFINE_IINTERFACE(IVTransformPairable, "Altar", "VTransformPairable");
 
 		// add
 		virtual ~IVTransformPairable();  // 00

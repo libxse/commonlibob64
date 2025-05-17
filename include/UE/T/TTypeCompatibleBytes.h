@@ -6,6 +6,16 @@ namespace UE
 	class TTypeCompatibleBytes
 	{
 	public:
+		T* GetTypedPtr()
+		{
+			return (T*)this;
+		}
+
+		const T* GetTypedPtr() const
+		{
+			return (const T*)this;
+		}
+
 		// members
 		alignas(T) std::uint8_t pad[sizeof(T)];  // 00
 	};

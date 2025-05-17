@@ -23,7 +23,7 @@ namespace UE
 		public IBlueprintPropertyGuidProvider
 	{
 	public:
-		UE_DEFINE_UOBJECT("Engine", "BlueprintGeneratedClass");
+		UE_DEFINE_UOBJECT(UBlueprintGeneratedClass, UClass, "Engine", "BlueprintGeneratedClass");
 
 		// override
 		virtual ~UBlueprintGeneratedClass();  // 00

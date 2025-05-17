@@ -26,7 +26,7 @@ namespace UE
 		public APawn
 	{
 	public:
-		UE_DEFINE_UOBJECT("Engine", "Character");
+		UE_DEFINE_UOBJECT(ACharacter, APawn, "Engine", "Character");
 
 		// override
 		virtual ~ACharacter();  // 00

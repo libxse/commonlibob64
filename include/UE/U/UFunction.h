@@ -12,10 +12,17 @@ namespace UE
 		public UStruct
 	{
 	public:
-		UE_DEFINE_UOBJECT("CoreUObject", "Function");
+		UE_DEFINE_UOBJECT_INTRINSIC(UFunction, UStruct, "CoreUObject", "Function", EClassFlags::None, EClassCastFlags::UFunction);
 
 		// override
 		virtual ~UFunction();
+
+		UFunction* GetSuperFunction() const
+		{
+			UStruct* result = GetSuperStruct();
+			assert(!result || result->IsA<UFunction>());
+			return static_cast<UFunction*>(result);
+		}
 
 		// members
 		EFunctionFlags functionFlags;

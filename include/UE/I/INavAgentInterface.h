@@ -13,7 +13,7 @@ namespace UE
 	class INavAgentInterface
 	{
 	public:
-		UE_DEFINE_IINTERFACE("Engine", "NavAgentInterface");
+		UE_DEFINE_IINTERFACE(INavAgentInterface, "Engine", "NavAgentInterface");
 
 		// add
 		virtual ~INavAgentInterface();  // 00

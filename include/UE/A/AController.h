@@ -21,7 +21,7 @@ namespace UE
 		public INavAgentInterface
 	{
 	public:
-		UE_DEFINE_UOBJECT("Engine", "Controller");
+		UE_DEFINE_UOBJECT(AController, AActor, "Engine", "Controller");
 
 		// override
 		virtual ~AController();

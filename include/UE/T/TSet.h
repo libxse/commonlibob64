@@ -15,10 +15,32 @@ namespace UE
 		using ElementArrayType = TSparseArray<SetElementType, typename A::SparseArrayAllocator>;
 		using HashType = typename A::HashAllocator::template ForElementType<FSetElementId>;
 
+		TSet() = default;
+
+		T& Get(FSetElementId a_id)
+		{
+			return elements[a_id.index].value;
+		}
+
+		const T& Get(FSetElementId a_id) const
+		{
+			return elements[a_id.index].value;
+		}
+
+		T& operator[](FSetElementId a_id)
+		{
+			return elements[a_id.index].value;
+		}
+
+		const T& operator[](FSetElementId a_id) const
+		{
+			return elements[a_id.index].value;
+		}
+
 		// members
-		ElementArrayType     elements;  // 00
-		mutable HashType     hash;      // 38
-		mutable std::int32_t hashSize;  // 48
+		ElementArrayType     elements;       // 00
+		mutable HashType     hash;           // 38
+		mutable std::int32_t hashSize{ 0 };  // 48
 	};
 	static_assert(sizeof(TSet<void*>) == 0x50);
 }

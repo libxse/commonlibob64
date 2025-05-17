@@ -17,6 +17,16 @@ namespace UE
 		using DataType = TArray<FElementOrFreeListLink, typename A::ElementAllocator>;
 		using AllocationBitArrayType = TBitArray<typename A::BitArrayAllocator>;
 
+		T& operator[](std::int32_t a_index)
+		{
+			return *(T*)&((FElementOrFreeListLink*)data.GetData())[a_index].elementData;
+		}
+
+		const T& operator[](std::int32_t a_index) const
+		{
+			return *(T*)&((FElementOrFreeListLink*)data.GetData())[a_index].elementData;
+		}
+
 		// members
 		DataType               data;             // 00
 		AllocationBitArrayType allocationFlags;  // 10

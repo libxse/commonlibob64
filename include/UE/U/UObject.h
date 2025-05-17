@@ -1,6 +1,7 @@
 #pragma once
 
-#include "UE/F/FName.h"
+#include "UE/E/EClassCastFlags.h"
+#include "UE/E/EClassFlags.h"
 #include "UE/F/FObjectPostSaveRootContext.h"
 #include "UE/F/FObjectPreSaveContext.h"
 #include "UE/F/FObjectPreSaveRootContext.h"
@@ -9,11 +10,7 @@
 #include "UE/T/TArray.h"
 #include "UE/T/TMap.h"
 #include "UE/U/UObjectBaseUtility.h"
-
-#define UE_DEFINE_UOBJECT(a_package, a_name)          \
-	static constexpr auto UE_PACKAGE{ L##a_package }; \
-	static constexpr auto UE_NAME{ L##a_name };       \
-	static constexpr auto UE_CLASS{ L"/Script/" L##a_package L"." L##a_name };
+#include "UE/UnrealMacro.h"
 
 namespace UE
 {
@@ -51,7 +48,7 @@ namespace UE
 		public UObjectBaseUtility
 	{
 	public:
-		UE_DEFINE_UOBJECT("CoreUObject", "Object");
+		UE_DEFINE_UOBJECT_INTRINSIC(UObject, UObjectBaseUtility, "CoreUObject", "Object", EClassFlags::Abstract | EClassFlags::Intrinsic, EClassCastFlags::None);
 
 		class FAssetRegistryTag
 		{
@@ -70,7 +67,7 @@ namespace UE
 		virtual ~UObject();  // 00
 
 		// add
-		virtual FString                      GetDetailedInfoInternal();                                                                          // 08
+		virtual FString                      GetDetailedInfoInternal() const;                                                                    // 08
 		virtual void                         PostInitProperties();                                                                               // 09
 		virtual void                         PostReinitProperties();                                                                             // 0A
 		virtual void                         PostCDOContruct();                                                                                  // 0B
@@ -81,7 +78,7 @@ namespace UE
 		virtual void                         PreSave(FObjectPreSaveContext);                                                                     // 10
 		virtual void                         PreSave(const ITargetPlatform*);                                                                    // 11
 		virtual bool                         ResolveSubobject(const wchar_t*, UObject**, bool);                                                  // 12
-		virtual bool                         IsReadyForAsyncPostLoad();                                                                          // 13
+		virtual bool                         IsReadyForAsyncPostLoad() const;                                                                    // 13
 		virtual void                         PostLoad();                                                                                         // 14
 		virtual void                         PostLoadSubobjects(FObjectInstancingGraph*);                                                        // 15
 		virtual void                         BeginDestroy();                                                                                     // 16
@@ -95,24 +92,24 @@ namespace UE
 		virtual void                         PreDuplicate(FObjectDuplicationParameters*);                                                        // 1E
 		virtual void                         PostDuplicate(EDuplicateMode::Type);                                                                // 1F
 		virtual void                         PostDuplicate(bool);                                                                                // 20
-		virtual bool                         NeedsLoadForClient();                                                                               // 21
-		virtual bool                         NeedsLoadForServer();                                                                               // 22
-		virtual bool                         NeedsLoadForTargetPlatform(const ITargetPlatform*);                                                 // 23
-		virtual bool                         NeedsLoadForEditorGame();                                                                           // 24
-		virtual bool                         IsEditorOnly();                                                                                     // 25
-		virtual bool                         HasNonEditorOnlyReferences();                                                                       // 26
-		virtual bool                         IsPostLoadThreadSafe();                                                                             // 27
-		virtual bool                         IsDestructionThreadSafe();                                                                          // 28
+		virtual bool                         NeedsLoadForClient() const;                                                                         // 21
+		virtual bool                         NeedsLoadForServer() const;                                                                         // 22
+		virtual bool                         NeedsLoadForTargetPlatform(const ITargetPlatform*) const;                                           // 23
+		virtual bool                         NeedsLoadForEditorGame() const;                                                                     // 24
+		virtual bool                         IsEditorOnly() const;                                                                               // 25
+		virtual bool                         HasNonEditorOnlyReferences() const;                                                                 // 26
+		virtual bool                         IsPostLoadThreadSafe() const;                                                                       // 27
+		virtual bool                         IsDestructionThreadSafe() const;                                                                    // 28
 		virtual void                         GetPreloadDependencies(TArray<UObject*>*);                                                          // 29
 		virtual void                         GetPrestreamPackages(TArray<UObject*>*);                                                            // 2A
-		virtual void                         ExportCustomProperties(FOutputDevice*, unsigned int);                                               // 2B
+		virtual void                         ExportCustomProperties(FOutputDevice*, std::uint32_t);                                              // 2B
 		virtual void                         ImportCustomProperties(const wchar_t*, FFeedbackContext*);                                          // 2C
 		virtual void                         PostEditImport();                                                                                   // 2D
 		virtual void                         PostReloadConfig(FProperty*);                                                                       // 2E
-		virtual bool                         Rename(const wchar_t*, UObject*, unsigned int);                                                     // 2F
+		virtual bool                         Rename(const wchar_t*, UObject*, std::uint32_t);                                                    // 2F
 		virtual FString                      GetDesc();                                                                                          // 30
-		virtual UWorld*                      GetWorld();                                                                                         // 31
-		virtual bool                         GetNativePropertyValues(TMap<FString, FString>*, unsigned int);                                     // 32
+		virtual UWorld*                      GetWorld() const;                                                                                   // 31
+		virtual bool                         GetNativePropertyValues(TMap<FString, FString>*, std::uint32_t) const;                              // 32
 		virtual void                         GetResourceSizeEx(FResourceSizeEx*);                                                                // 33
 		virtual FName                        GetExporterName();                                                                                  // 34
 		virtual FRestoreForUObjectOverwrite* GetRestoreForUObjectOverwrite();                                                                    // 35
@@ -149,6 +146,11 @@ namespace UE
 		virtual void                         ValidateGeneratedRepEnums(const TArray<FRepRecord>*) const;                                         // 54
 		virtual void                         SetNetPushIdDynamic(const std::uint64_t a_id);                                                      // 55
 		virtual std::uint64_t                GetNetPushIdDynamic() const;                                                                        // 56
+
+		FString GetDetailedInfo() const
+		{
+			return this ? GetDetailedInfoInternal() : L"None";
+		}
 	};
 	static_assert(sizeof(UObject) == 0x28);
 }

@@ -21,6 +21,13 @@ namespace UE
 		// override
 		virtual ~FFrame();  // 00
 
+		static void KismetExecutionMessage(const wchar_t* a_message, ELogVerbosity a_verbosity, FName a_warningID = FName())
+		{
+			using func_t = decltype(&FFrame::KismetExecutionMessage);
+			REL::Relocation<func_t> func{ UE::ID::FFrame::KismetExecutionMessage };
+			func(a_message, a_verbosity, a_warningID);
+		}
+
 		// members
 		UFunction*    node;                         // 010
 		UObject*      object;                       // 018

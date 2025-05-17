@@ -115,7 +115,7 @@ namespace UE
 	{
 		static UClass* ptr{ nullptr };
 		if (!ptr)
-			ptr = StaticFindObject<UClass>(nullptr, nullptr, T::UE_CLASS);
+			ptr = StaticFindObject<UClass>(nullptr, nullptr, T::CLASS_PATH);
 
 		return ptr;
 	}
@@ -125,7 +125,7 @@ namespace UE
 	{
 		static UClass* ptr{ nullptr };
 		if (!ptr)
-			ptr = StaticFindObjectSafe<UClass>(nullptr, nullptr, T::UE_CLASS);
+			ptr = StaticFindObjectSafe<UClass>(nullptr, nullptr, T::CLASS_PATH);
 
 		return ptr;
 	}

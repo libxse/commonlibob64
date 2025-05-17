@@ -13,7 +13,7 @@ namespace UE
 		public UTESForm
 	{
 	public:
-		UE_DEFINE_UOBJECT("Altar", "TESRace");
+		UE_DEFINE_UOBJECT(UTESRace, UTESForm, "Altar", "TESRace");
 
 		// override
 		virtual ~UTESRace();  // 00

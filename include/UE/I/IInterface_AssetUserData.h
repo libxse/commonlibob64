@@ -11,7 +11,7 @@ namespace UE
 	class IInterface_AssetUserData
 	{
 	public:
-		UE_DEFINE_IINTERFACE("Engine", "Interface_AssetUserData");
+		UE_DEFINE_IINTERFACE(IInterface_AssetUserData, "Engine", "Interface_AssetUserData");
 
 		// add
 		virtual ~IInterface_AssetUserData();  // 00

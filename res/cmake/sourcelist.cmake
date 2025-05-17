@@ -319,16 +319,20 @@ set(SOURCES
 	include/UE/A/AVPairedPawn.h
 	include/UE/B/BaseKeyFuncs.h
 	include/UE/D/DefaultKeyFuncs.h
+	include/UE/E/EAsyncExecution.h
 	include/UE/E/EAutoPossessAI.h
 	include/UE/E/EAutoReceiveInput.h
 	include/UE/E/EClassCastFlags.h
 	include/UE/E/EClassFlags.h
 	include/UE/E/EComponentCreationMethod.h
+	include/UE/E/EDynamicResolutionStateEvent.h
 	include/UE/E/EEulerRotationOrder.h
 	include/UE/E/EExprToken.h
 	include/UE/E/EFindName.h
 	include/UE/E/EFormID.h
+	include/UE/E/EFrameHitchType.h
 	include/UE/E/EFunctionFlags.h
+	include/UE/E/EGetWorldErrorMode.h
 	include/UE/E/EInternalObjectFlags.h
 	include/UE/E/ELevelTick.h
 	include/UE/E/ELogVerbosity.h
@@ -343,36 +347,48 @@ set(SOURCES
 	include/UE/E/EOblivionAnimGroup.h
 	include/UE/E/EPackageExtension.h
 	include/UE/E/EPhysicsReplicationMode.h
+	include/UE/E/ESPMode.h
 	include/UE/E/EScriptType.h
 	include/UE/E/ESearchCase.h
 	include/UE/E/ESpawnActorCollisionHandlingMethod.h
+	include/UE/E/ETextFlag.h
 	include/UE/E/ETickingGroup.h
+	include/UE/E/ETransitionType.h
 	include/UE/E/EVActorValues.h
 	include/UE/E/EVBloodColor.h
 	include/UE/E/EVBossCategory.h
 	include/UE/F/FActorComponentTickFunction.h
 	include/UE/F/FActorTickFunction.h
+	include/UE/F/FAudioDeviceHandle.h
 	include/UE/F/FBasedMovementInfo.h
 	include/UE/F/FBlueprintCookedComponentInstancingData.h
+	include/UE/F/FCellExteriorData.h
+	include/UE/F/FCellInteriorData.h
 	include/UE/F/FChunkedFixedUObjectArray.h
+	include/UE/F/FColor.h
 	include/UE/F/FCriticalSection.h
 	include/UE/F/FCustomVersion.h
 	include/UE/F/FCustomVersionContainer.h
+	include/UE/F/FDebug.h
 	include/UE/F/FDefaultAllocator.h
 	include/UE/F/FDefaultBitArrayAllocator.h
 	include/UE/F/FDefaultDelegateUserPolicy.h
 	include/UE/F/FDefaultSetAllocator.h
 	include/UE/F/FDefaultSparseArrayAllocator.h
 	include/UE/F/FDelegateHandle.h
+	include/UE/F/FDirectoryPath.h
 	include/UE/F/FExec.h
 	include/UE/F/FField.h
 	include/UE/F/FFieldClass.h
 	include/UE/F/FFieldPath.h
 	include/UE/F/FFieldVariant.h
 	include/UE/F/FFrame.h
+	include/UE/F/FFrameRate.h
 	include/UE/F/FGenericPlatformString.h
 	include/UE/F/FGraphEvent.h
 	include/UE/F/FGuid.h
+	include/UE/F/FIntPoint.h
+	include/UE/F/FLinearColor.h
 	include/UE/F/FMemory.h
 	include/UE/F/FMicrosoftPlatformString.h
 	include/UE/F/FName.h
@@ -388,6 +404,7 @@ set(SOURCES
 	include/UE/F/FObjectPreSaveContext.h
 	include/UE/F/FObjectPreSaveRootContext.h
 	include/UE/F/FObjectPtr.h
+	include/UE/F/FObjectSubsystemCollection.h
 	include/UE/F/FOblivionNPCFaceGenData.h
 	include/UE/F/FOutParmRec.h
 	include/UE/F/FOutputDevice.h
@@ -408,7 +425,9 @@ set(SOURCES
 	include/UE/F/FRootMotionSourceGroup.h
 	include/UE/F/FRootMotionSourceSettings.h
 	include/UE/F/FScopeLock.h
+	include/UE/F/FScreenMessageString.h
 	include/UE/F/FSetElementId.h
+	include/UE/F/FSoftClassPath.h
 	include/UE/F/FSoftObjectPath.h
 	include/UE/F/FSoftObjectPtr.h
 	include/UE/F/FSparseDelegate.h
@@ -422,6 +441,8 @@ set(SOURCES
 	include/UE/F/FStructuredArchiveSlot.h
 	include/UE/F/FStructuredArchiveSlotBase.h
 	include/UE/F/FStructuredArchiveStream.h
+	include/UE/F/FTESWeatherList.h
+	include/UE/F/FText.h
 	include/UE/F/FThreadSafeCounter.h
 	include/UE/F/FTickFunction.h
 	include/UE/F/FTimerHandle.h
@@ -429,26 +450,37 @@ set(SOURCES
 	include/UE/F/FUObjectArray.h
 	include/UE/F/FUObjectItem.h
 	include/UE/F/FURL.h
+	include/UE/F/FVector.h
+	include/UE/F/FVector2.h
 	include/UE/F/FVector_NetQuantize.h
+	include/UE/F/FWaterShaderData.h
 	include/UE/F/FWeakObjectPtr.h
+	include/UE/F/FWorldMapData.h
+	include/UE/F/FWorldMapLandscapeInfo.h
+	include/UE/F/FWorldMapLandscapeSettings.h
 	include/UE/I/IBlueprintPropertyGuidProvider.h
 	include/UE/I/IDelegateInstance.h
 	include/UE/I/IInterface.h
 	include/UE/I/IInterface_AssetUserData.h
 	include/UE/I/INavAgentInterface.h
 	include/UE/I/IReactToFreezeInterface.h
+	include/UE/I/ITextData.h
 	include/UE/I/IVAudioPlayable.h
 	include/UE/I/IVPhysicsControllable.h
 	include/UE/I/IVTransformPairable.h
 	include/UE/I/IWorldPartitionStreamingSourceProvider.h
 	include/UE/S/SharedPointerInternals.h
 	include/UE/T/TAlignedBytes.h
+	include/UE/T/TAllocatorTraits.h
 	include/UE/T/TArray.h
 	include/UE/T/TBaseDynamicDelegate.h
 	include/UE/T/TBaseDynamicMulticastDelegate.h
 	include/UE/T/TBitArray.h
 	include/UE/T/TBitsToSizeType.h
+	include/UE/T/TCast.h
 	include/UE/T/TChooseClass.h
+	include/UE/T/TCopyQualifiersAndRefsFromTo.h
+	include/UE/T/TCopyQualifiersFromTo.h
 	include/UE/T/TDefaultDelete.h
 	include/UE/T/TDefaultMapHashableKeyFuncs.h
 	include/UE/T/TDefaultMapKeyFuncs.h
@@ -462,6 +494,7 @@ set(SOURCES
 	include/UE/T/TInlineAllocator.h
 	include/UE/T/TInlineSetAllocator.h
 	include/UE/T/TInlineSparseArrayAllocator.h
+	include/UE/T/TIntPoint.h
 	include/UE/T/TIntegerSequence.h
 	include/UE/T/TMap.h
 	include/UE/T/TMapBase.h
@@ -471,7 +504,10 @@ set(SOURCES
 	include/UE/T/TNamePoolShard.h
 	include/UE/T/TObjectIteratorBase.h
 	include/UE/T/TObjectPtr.h
+	include/UE/T/TPair.h
+	include/UE/T/TPayload.h
 	include/UE/T/TPersistentObjectPtr.h
+	include/UE/T/TPlacementNewer.h
 	include/UE/T/TQuat.h
 	include/UE/T/TRefCountPtr.h
 	include/UE/T/TRotator.h
@@ -480,7 +516,9 @@ set(SOURCES
 	include/UE/T/TSetAllocator.h
 	include/UE/T/TSetElement.h
 	include/UE/T/TSetElementBase.h
+	include/UE/T/TSharedFromThis.h
 	include/UE/T/TSharedPtr.h
+	include/UE/T/TSharedRef.h
 	include/UE/T/TSizedDefaultAllocator.h
 	include/UE/T/TSizedHeapAllocator.h
 	include/UE/T/TSizedInlineAllocator.h
@@ -493,12 +531,17 @@ set(SOURCES
 	include/UE/T/TSparseDynamicDelegate.h
 	include/UE/T/TStringBuilder.h
 	include/UE/T/TSubclassOf.h
+	include/UE/T/TTemplate.h
 	include/UE/T/TTransform.h
 	include/UE/T/TTuple.h
 	include/UE/T/TTypeCompatibleBytes.h
+	include/UE/T/TTypeTraits.h
+	include/UE/T/TUniqueFunction.h
 	include/UE/T/TUniquePtr.h
 	include/UE/T/TVector.h
+	include/UE/T/TVector2.h
 	include/UE/T/TWeakObjectPtr.h
+	include/UE/T/TWeakPtr.h
 	include/UE/U/UActorComponent.h
 	include/UE/U/UAltarCheatManager.h
 	include/UE/U/UBlueprintFunctionLibrary.h
@@ -510,6 +553,7 @@ set(SOURCES
 	include/UE/U/UFunction.h
 	include/UE/U/UGameplayStatics.h
 	include/UE/U/UInterface.h
+	include/UE/U/UKismetSystemLibrary.h
 	include/UE/U/UObject.h
 	include/UE/U/UObjectBase.h
 	include/UE/U/UObjectBaseUtility.h
@@ -518,10 +562,14 @@ set(SOURCES
 	include/UE/U/UPackage.h
 	include/UE/U/UStruct.h
 	include/UE/U/UTESBaseFormComponent.h
+	include/UE/U/UTESCell.h
 	include/UE/U/UTESClass.h
+	include/UE/U/UTESClimate.h
 	include/UE/U/UTESFaction.h
 	include/UE/U/UTESForm.h
 	include/UE/U/UTESGameSetting.h
+	include/UE/U/UTESHair.h
+	include/UE/U/UTESIdleForm.h
 	include/UE/U/UTESObject.h
 	include/UE/U/UTESObjectREFR.h
 	include/UE/U/UTESPackage.h
@@ -531,9 +579,15 @@ set(SOURCES
 	include/UE/U/UTESScript.h
 	include/UE/U/UTESTopic.h
 	include/UE/U/UTESTopicInfo.h
+	include/UE/U/UTESWaterForm.h
+	include/UE/U/UTESWeather.h
+	include/UE/U/UTESWorldSpace.h
 	include/UE/U/UVTESObjectRefComponent.h
 	include/UE/U/UWorld.h
+	include/UE/U/UWorldProxy.h
 	include/UE/Unreal.h
+	include/UE/UnrealGlobal.h
+	include/UE/UnrealMacro.h
 	include/UE/V/VPairingData_IPairingData.h
 	include/UE/V/VPairingData_VTransform.h
 	src/OBSE/API.cpp

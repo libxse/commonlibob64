@@ -9,7 +9,7 @@ namespace UE
 	class IVPhysicsControllable
 	{
 	public:
-		UE_DEFINE_IINTERFACE("Altar", "VPhysicsControllable");
+		UE_DEFINE_IINTERFACE(IVPhysicsControllable, "Altar", "VPhysicsControllable");
 
 		// add
 		virtual ~IVPhysicsControllable();  // 00

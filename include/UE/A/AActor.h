@@ -46,7 +46,7 @@ namespace UE
 		public UObject
 	{
 	public:
-		UE_DEFINE_UOBJECT("Engine", "Actor");
+		UE_DEFINE_UOBJECT(AActor, UObject, "Engine", "Actor");
 
 		enum class EActorBeginPlayState : std::uint8_t
 		{

@@ -8,7 +8,7 @@ namespace UE
 		public UObject
 	{
 	public:
-		UE_DEFINE_UOBJECT("CoreUObject", "Field");
+		UE_DEFINE_UOBJECT_INTRINSIC(UField, UObject, "CoreUObject", "Field", EClassFlags::Abstract, EClassCastFlags::UStruct);
 
 		// override
 		virtual ~UField();

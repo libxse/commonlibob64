@@ -15,7 +15,7 @@ namespace UE
 		public UObject
 	{
 	public:
-		UE_DEFINE_UOBJECT("CoreUObject", "Package");
+		UE_DEFINE_UOBJECT_INTRINSIC(UPackage, UObject, "CoreUObject", "Package", EClassFlags::None, EClassCastFlags::UPackage);
 
 		// members
 		std::uint8_t            dirty: 1;               // 28:0

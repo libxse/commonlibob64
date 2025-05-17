@@ -8,6 +8,8 @@ namespace UE
 	class FSoftObjectPath
 	{
 	public:
+		FSoftObjectPath() = default;
+
 		// members
 		FTopLevelAssetPath assetPath;      // 00
 		FString            subPathString;  // 10

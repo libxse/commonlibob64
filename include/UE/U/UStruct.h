@@ -4,6 +4,7 @@
 #include "UE/F/FGuid.h"
 #include "UE/F/FStructBaseChain.h"
 #include "UE/F/FStructuredArchive.h"
+#include "UE/F/FTopLevelAssetPath.h"
 #include "UE/T/TArray.h"
 #include "UE/T/TFieldPath.h"
 #include "UE/T/TObjectPtr.h"
@@ -22,7 +23,7 @@ namespace UE
 		public FStructBaseChain
 	{
 	public:
-		UE_DEFINE_UOBJECT("CoreUObject", "Struct");
+		UE_DEFINE_UOBJECT_INTRINSIC(UStruct, UField, "CoreUObject", "Struct", EClassFlags::MatchedSerializers, EClassCastFlags::UStruct);
 
 		// override
 		virtual ~UStruct();
@@ -47,6 +48,16 @@ namespace UE
 		virtual FName          FindPropertyNameFromGuid(const FGuid& a_guid) const;                                                                                                                                                 // 69
 		virtual FGuid          FindPropertyGuidFromName(const FName a_name) const;                                                                                                                                                  // 6A
 		virtual bool           ArePropertyGuidsAvailable() const;                                                                                                                                                                   // 6B
+
+		FTopLevelAssetPath GetStructPathName() const
+		{
+			return FTopLevelAssetPath(GetOuter()->GetFName(), GetFName());
+		}
+
+		UStruct* GetSuperStruct() const
+		{
+			return superStruct;
+		}
 
 		bool IsChildOf(const UStruct* a_base) const
 		{

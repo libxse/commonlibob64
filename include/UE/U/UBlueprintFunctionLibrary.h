@@ -8,7 +8,7 @@ namespace UE
 		public UObject
 	{
 	public:
-		UE_DEFINE_UOBJECT("Engine", "BlueprintFunctionLibrary");
+		UE_DEFINE_UOBJECT(UBlueprintFunctionLibrary, UObject, "Engine", "BlueprintFunctionLibrary");
 
 		// override
 		virtual ~UBlueprintFunctionLibrary();  // 00

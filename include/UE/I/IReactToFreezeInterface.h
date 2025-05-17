@@ -11,7 +11,7 @@ namespace UE
 	class IReactToFreezeInterface
 	{
 	public:
-		UE_DEFINE_IINTERFACE("Altar", "ReactToFreezeInterface");
+		UE_DEFINE_IINTERFACE(IReactToFreezeInterface, "Altar", "ReactToFreezeInterface");
 
 		// add
 		virtual ~IReactToFreezeInterface();  // 00

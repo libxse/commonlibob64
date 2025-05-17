@@ -6,6 +6,10 @@ namespace UE::Math
 	class TVector
 	{
 	public:
+		constexpr TVector(T a_x, T a_y, T a_z) :
+			x(a_x), y(a_y), z(a_z)
+		{}
+
 		// members
 		union
 		{
@@ -18,12 +22,6 @@ namespace UE::Math
 			T xyz[3];
 		};
 	};
+	static_assert(sizeof(TVector<float>) == 0xC);
 	static_assert(sizeof(TVector<double>) == 0x18);
-}
-
-namespace UE
-{
-	using FVector = Math::TVector<double>;
-	using FVector3d = Math::TVector<double>;
-	using FVector3f = Math::TVector<float>;
 }

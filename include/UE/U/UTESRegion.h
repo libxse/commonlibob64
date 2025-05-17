@@ -11,7 +11,7 @@ namespace UE
 		public UTESForm
 	{
 	public:
-		UE_DEFINE_UOBJECT("Altar", "TESRegion");
+		UE_DEFINE_UOBJECT(UTESRegion, UTESForm, "Altar", "TESRegion");
 
 		// override
 		virtual ~UTESRegion();  // 00

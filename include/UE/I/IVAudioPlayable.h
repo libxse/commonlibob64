@@ -7,7 +7,7 @@ namespace UE
 	class IVAudioPlayable
 	{
 	public:
-		UE_DEFINE_IINTERFACE("Altar", "VAudioPlayable");
+		UE_DEFINE_IINTERFACE(IVAudioPlayable, "Altar", "VAudioPlayable");
 
 		// add
 		virtual ~IVAudioPlayable();  // 00

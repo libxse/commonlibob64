@@ -25,7 +25,7 @@ namespace UE
 		public UStruct
 	{
 	public:
-		UE_DEFINE_UOBJECT("CoreUObject", "Class");
+		UE_DEFINE_UOBJECT_INTRINSIC(UClass, UStruct, "CoreUObject", "Class", EClassFlags::None, EClassCastFlags::UClass);
 
 		// override
 		virtual ~UClass();
@@ -58,6 +58,16 @@ namespace UE
 			return func(this, a_name, a_includeSuper);
 		}
 
+		EClassFlags GetClassFlags() const
+		{
+			return classFlags;
+		}
+
+		FTopLevelAssetPath GetClassPathName() const
+		{
+			return GetStructPathName();
+		}
+
 		UObject* GetDefaultObject(bool a_create = true) const
 		{
 			if (!classDefaultObject && a_create)
@@ -70,6 +80,11 @@ namespace UE
 		T* GetDefaultObject(bool a_create = true) const
 		{
 			return static_cast<T*>(GetDefaultObject(a_create));
+		}
+
+		UClass* GetSuperClass() const
+		{
+			return static_cast<UClass*>(GetSuperStruct());
 		}
 
 		bool HasAnyCastFlag(EClassCastFlags a_flag) const
