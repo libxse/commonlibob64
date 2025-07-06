@@ -197,7 +197,7 @@ rule("commonlibob64.plugin")
         depend.on_changed(function()
             local srcfiles, dstfiles = target:installfiles()
             if srcfiles and #srcfiles > 0 and dstfiles and #dstfiles > 0 then
-                task.run("install")
+                task.run("install", { target = target:name() })
             end
         end, { changed = target:is_rebuilt(), files = { target:targetfile() } })
     end)
