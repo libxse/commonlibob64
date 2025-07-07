@@ -253,12 +253,10 @@ namespace RE
 		virtual void                   HandleBlockedAttack(float a_fullDamage, float a_percentageBlocked, Actor* a_blockingActor, ArrowProjectile* a_arrow);                                                                                  // 110
 		virtual void                   HandleHealthDamage(Actor* a_attacker, float a_damage);                                                                                                                                                 // 111
 
-		std::int32_t GetItemCountInContainer(TESBoundObject* a_object)
-		{
-			using func_t = decltype(&Actor::GetItemCountInContainer);
-			static REL::Relocation<func_t> func{ ID::Actor::GetItemCountInContainer };
-			return func(this, a_object);
-		}
+		void         EquipObject(TESBoundObject* a_object, std::int32_t a_count, ExtraDataList* a_extra, bool a_now = false, bool a_force = false);
+		std::int32_t GetItemCountInContainer(TESBoundObject* a_object) const;
+		std::int16_t GetLevel() const;
+		bool         UnequipObject(TESBoundObject* a_object, std::int32_t a_count, ExtraDataList* a_extra, bool a_force = false, bool a_equipCalling = true);
 
 		// members
 		ActorDeathInfos                                       actorKilledInfos;                // 178
@@ -319,4 +317,35 @@ namespace RE
 		float                                                 updateTargetTimer;               // 310
 	};
 	static_assert(sizeof(Actor) == 0x318);
+}
+
+namespace RE
+{
+	inline void Actor::EquipObject(TESBoundObject* a_object, std::int32_t a_count, ExtraDataList* a_extra, bool a_now, bool a_force)
+	{
+		using func_t = decltype(&Actor::EquipObject);
+		static REL::Relocation<func_t> func{ ID::Actor::EquipObject };
+		func(this, a_object, a_count, a_extra, a_now, a_force);
+	}
+
+	inline std::int32_t Actor::GetItemCountInContainer(TESBoundObject* a_object) const
+	{
+		using func_t = decltype(&Actor::GetItemCountInContainer);
+		static REL::Relocation<func_t> func{ ID::Actor::GetItemCountInContainer };
+		return func(this, a_object);
+	}
+
+	inline std::int16_t Actor::GetLevel() const
+	{
+		using func_t = decltype(&Actor::GetLevel);
+		static REL::Relocation<func_t> func{ ID::Actor::GetLevel };
+		return func(this);
+	}
+
+	inline bool Actor::UnequipObject(TESBoundObject* a_object, std::int32_t a_count, ExtraDataList* a_extra, bool a_force, bool a_equipCalling)
+	{
+		using func_t = bool (Actor::*)(TESBoundObject*, std::int32_t, ExtraDataList*, bool, bool, bool);
+		static REL::Relocation<func_t> func{ ID::Actor::UnequipObject };
+		return func(this, a_object, a_count, a_extra, false, a_force, a_equipCalling);
+	}
 }

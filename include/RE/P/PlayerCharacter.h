@@ -1,5 +1,6 @@
 #pragma once
 
+#include "RE/C/Character.h"
 #include "RE/N/NiTArray.h"
 #include "RE/P/PlayerDeathInfos.h"
 

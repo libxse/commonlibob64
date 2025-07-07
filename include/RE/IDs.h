@@ -4,7 +4,24 @@ namespace RE::ID
 {
 	namespace Actor
 	{
+		inline constexpr REL::ID EquipObject{ 405993 };
 		inline constexpr REL::ID GetItemCountInContainer{ 406091 };
+		inline constexpr REL::ID GetLevel{ 406093 };
+		inline constexpr REL::ID UnequipObject{ 406356 };
+	}
+
+	namespace BaseExtraList
+	{
+		inline constexpr REL::ID AddExtra{ 407178 };
+		inline constexpr REL::ID GetExtraData{ 407219 };
+		inline constexpr REL::ID ItemsInList{ 407290 };
+		inline constexpr REL::ID RemoveAll{ 407293 };
+		inline constexpr REL::ID RemoveExtra{ 407306 };
+	}
+
+	namespace Calendar
+	{
+		inline constexpr REL::ID Singleton{ 1669511 };
 	}
 
 	namespace FORM_ENUM_STRING

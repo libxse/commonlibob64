@@ -12,7 +12,7 @@ namespace RE
 		inline static constexpr auto VTABLE = VTABLE::ExtraDataList;
 
 		// override
-		virtual ~ExtraDataList() override;  // 00
+		virtual ~ExtraDataList() override;  // 000
 	};
 	static_assert(sizeof(ExtraDataList) == 0x20);
 }
