@@ -45,7 +45,7 @@ namespace RE
 
 	inline BSExtraData* BaseExtraList::GetExtraData(EXTRA_DATA_TYPE a_type) const
 	{
-		using func_t = BSExtraData*(BaseExtraList::*)(EXTRA_DATA_TYPE) const;
+		using func_t = BSExtraData* (BaseExtraList::*)(EXTRA_DATA_TYPE) const;
 		static REL::Relocation<func_t> func{ ID::BaseExtraList::GetExtraData };
 		return func(this, a_type);
 	}
