@@ -91,13 +91,9 @@ namespace OBSE
 					};
 
 					auto logger = std::make_shared<spdlog::logger>("global", sinks.begin(), sinks.end());
-#ifndef NDEBUG
-					logger->set_level(spdlog::level::debug);
-					logger->flush_on(spdlog::level::debug);
-#else
-					logger->set_level(spdlog::level::info);
-					logger->flush_on(spdlog::level::info);
-#endif
+					logger->set_level(static_cast<spdlog::level::level_enum>(info.logLevel));
+					logger->flush_on(static_cast<spdlog::level::level_enum>(info.logLevel));
+
 					spdlog::set_default_logger(std::move(logger));
 					spdlog::set_pattern(info.logPattern ? info.logPattern : "[%T.%e] [%=5t] [%L] %v");
 
