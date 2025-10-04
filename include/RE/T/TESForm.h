@@ -85,7 +85,7 @@ namespace RE
 		virtual bool           GetQuestObject();                                                                                                                          // 1E
 		virtual bool           GetHasSpokenFlag();                                                                                                                        // 1F
 		virtual bool           GetHavokDeath();                                                                                                                           // 20
-		virtual bool           GetNeedtoChangeProcess();                                                                                                                  // 21
+		virtual bool           GetNeedToChangeProcess();                                                                                                                  // 21
 		virtual bool           GetDangerous();                                                                                                                            // 22
 		virtual void           SetDelete(bool a_set);                                                                                                                     // 23
 		virtual void           SetAltered(bool a_set);                                                                                                                    // 24

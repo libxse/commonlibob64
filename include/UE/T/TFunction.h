@@ -1,6 +1,8 @@
 #pragma once
 
 #include "UE/T/TAlignedBytes.h"
+#include "UE/T/TChooseClass.h"
+#include "UE/T/TTemplate.h"
 #include "UE/T/TTypeTraits.h"
 
 namespace UE::Core::Private::Function

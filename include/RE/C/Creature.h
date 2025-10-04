@@ -13,7 +13,7 @@ namespace RE
 		inline static constexpr auto FORMTYPE = FormType::Creature;
 
 		// members
-		bool ragdoll;  // 318
+		bool ragdoll;  // 328
 	};
-	static_assert(sizeof(Creature) == 0x320);
+	static_assert(sizeof(Creature) == 0x330);
 }

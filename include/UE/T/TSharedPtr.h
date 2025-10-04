@@ -1,48 +1,54 @@
 #pragma once
 
 #include "UE/S/SharedPointerInternals.h"
+#include "UE/T/TSharedRef.h"
 
 namespace UE
 {
 	class UObject;
 
-	template <class T, ESPMode M = ESPMode::ThreadSafe>
+	template <class T, ESPMode M>
 	class TSharedPtr
 	{
 	public:
-		TSharedPtr(SharedPointerInternals::FNullTag* = nullptr) :
-			object(nullptr), sharedReferenceCount()
+		TSharedPtr(SharedPointerInternals::FNullTag* = nullptr)
 		{}
 
 		TSharedPtr(const TSharedPtr& a_other) :
-			object(a_other.object), sharedReferenceCount(a_other.sharedReferenceCount)
+			m_object(a_other.m_object), m_sharedReferenceCount(a_other.m_sharedReferenceCount)
 		{}
 
 		TSharedPtr(TSharedPtr&& a_other) :
-			object(a_other.object), sharedReferenceCount(std::move(a_other.sharedReferenceCount))
+			m_object(a_other.m_object), m_sharedReferenceCount(std::move(a_other.m_sharedReferenceCount))
 		{
-			a_other.object = nullptr;
+			a_other.m_object = nullptr;
 		}
+
+		template <class T2>
+		TSharedPtr(const TSharedRef<T2, M>& a_ref) :
+			m_object(a_ref.m_object), m_sharedReferenceCount(a_ref.m_sharedReferenceCount)
+		{}
 
 		T* Get() const
 		{
-			return object;
+			return m_object;
 		}
 
 		explicit operator bool() const
 		{
-			return object;
+			return m_object;
 		}
 
 		T* operator->() const
 		{
-			assert(object);
-			return object;
+			assert(m_object);
+			return m_object;
 		}
 
+	private:
 		// members
-		T*                                           object;                // 00
-		SharedPointerInternals::FSharedReferencer<M> sharedReferenceCount;  // 08
+		T*                                           m_object{ nullptr };     // 00
+		SharedPointerInternals::FSharedReferencer<M> m_sharedReferenceCount;  // 08
 	};
 	static_assert(sizeof(TSharedPtr<void>) == 0x10);
 }

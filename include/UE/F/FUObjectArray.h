@@ -4,11 +4,11 @@
 #include "UE/F/FCriticalSection.h"
 #include "UE/F/FThreadSafeCounter.h"
 #include "UE/T/TArray.h"
+#include "UE/U/UObjectBase.h"
 
 namespace UE
 {
 	class FUObjectItem;
-	class UObjectBase;
 
 	class FUObjectArray
 	{
@@ -109,6 +109,13 @@ namespace UE
 			return ptr.get();
 		}
 
+		std::int32_t AllocateSerialNumber(std::int32_t a_index)
+		{
+			using func_t = decltype(&FUObjectArray::AllocateSerialNumber);
+			static REL::Relocation<func_t> func{ ID::FUObjectArray::AllocateSerialNumber };
+			return func(this, a_index);
+		}
+
 		std::int32_t GetObjectArrayCapacity() const
 		{
 			return objObjects.Capacity();
@@ -130,6 +137,11 @@ namespace UE
 		void LockInternalArray() const
 		{
 			objObjectsCritical.Lock();
+		}
+
+		std::int32_t ObjectToIndex(const UObjectBase* a_object) const
+		{
+			return a_object->internalIndex;
 		}
 
 		void UnlockInternalArray() const

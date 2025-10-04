@@ -70,8 +70,8 @@ namespace RE
 		virtual void OnPostPairItem() override;  // 04
 
 		// members
-		BipedAnim* biped;        // 318
-		float      armorRating;  // 320
+		BipedAnim* biped;        // 328
+		float      armorRating;  // 330
 	};
-	static_assert(sizeof(Character) == 0x328);
+	static_assert(sizeof(Character) == 0x338);
 }

@@ -6,8 +6,11 @@
 
 namespace RE
 {
+	class ScriptLocals;
 	class ScriptVariable;
+	class TESObjectREFR;
 
+	struct SCRIPT_PARAMETER;
 	struct SCRIPT_REFERENCED_OBJECT;
 
 	class Script :

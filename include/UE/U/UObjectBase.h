@@ -3,6 +3,8 @@
 #include "UE/E/EObjectFlags.h"
 #include "UE/F/FName.h"
 
+#include "UE/UnrealCore.h"
+
 namespace UE
 {
 	class UClass;

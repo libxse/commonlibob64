@@ -22,6 +22,16 @@ namespace UE
 		}
 	}
 
+	template <class T>
+	void DestructItem(T* a_item)
+	{
+		if constexpr (!std::is_trivially_destructible_v<T>) {
+			using DestructItemsElementTypeTypedef = T;
+
+			a_item->DestructItemsElementTypeTypedef::~DestructItemsElementTypeTypedef();
+		}
+	}
+
 	template <typename T>
 	T CopyTemp(T& a_value)
 	{

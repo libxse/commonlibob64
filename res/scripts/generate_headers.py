@@ -28,7 +28,6 @@ def make_header(a_directory, a_filename, a_exclude = set()):
 		for file in tmp:
 			files.append(file.replace("\\", "/"))
 
-		files.sort()
 		for file in files:
 			out.write('#include "')
 			out.write(file)

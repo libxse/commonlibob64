@@ -91,51 +91,51 @@ namespace UE
 		virtual bool                               IsPrecomputedLightingValid() const;                                                                                                                                                // 0B9
 
 		// members
-		const FLevelCollection*                        cachedLevelCollection;                        // 0A0
-		TWeakObjectPtr<APhysicsVolume, FWeakObjectPtr> physicsVolume;                                // 0A8
-		TObjectPtr<USceneComponent>                    attachParent;                                 // 0B0
-		FName                                          attachSocketName;                             // 0B8
-		TArray<TObjectPtr<USceneComponent>>            attachChildren;                               // 0C0
-		TArray<TObjectPtr<USceneComponent>>            clientAttachedChildren;                       // 0D0
-		FName                                          netOldAttachSocketName;                       // 0E0
-		USceneComponent*                               netOldAttachParent;                           // 0E8
-		FBoxSphereBounds                               bounds;                                       // 0F0
-		FVector                                        relativeLocation;                             // 128
-		FRotator                                       relativeRotation;                             // 140
-		FVector                                        relativeScale3D;                              // 158
-		FVector                                        componentVelocity;                            // 170
-		std::uint8_t                                   componentToWorldUpdated: 1;                   // 188:0
-		std::uint8_t                                   skipUpdateOverlaps: 1;                        // 188:1
-		std::uint8_t                                   absoluteLocation: 1;                          // 188:2
-		std::uint8_t                                   absoluteRotation: 1;                          // 188:3
-		std::uint8_t                                   absoluteScale: 1;                             // 188:4
-		std::uint8_t                                   visible: 1;                                   // 188:5
-		std::uint8_t                                   shouldBeAttached: 1;                          // 188:6
-		std::uint8_t                                   shouldSnapLocationWhenAttached: 1;            // 188:7
-		std::uint8_t                                   shouldSnapRotationWhenAttached: 1;            // 189:0
-		std::uint8_t                                   shouldSnapScaleWhenAttached: 1;               // 189:1
-		std::uint8_t                                   shouldUpdatePhysicsVolume: 1;                 // 189:2
-		std::uint8_t                                   hiddenInGame: 1;                              // 189:3
-		std::uint8_t                                   boundsChangeTriggersStreamingDataRebuild: 1;  // 189:4
-		std::uint8_t                                   useAttachParentBound: 1;                      // 189:5
-		std::uint8_t                                   computeFastLocalBounds: 1;                    // 189:6
-		std::uint8_t                                   computeBoundsOnceForGame: 1;                  // 189:7
-		std::uint8_t                                   computedBoundsOnceForGame: 1;                 // 18A:0
-		bool                                           doesSkipOverlapUpdateFromAttachedParent;      // 18B
-		std::uint8_t                                   isNotRenderAttachmentRoot: 1;                 // 18C:0
-		std::uint8_t                                   disableDetachmentUpdateOverlaps: 1;           // 18C:1
-		std::uint8_t                                   wantsOnUpdateTransform: 1;                    // 18C:2
-		std::uint8_t                                   netUpdateTransform: 1;                        // 18C:3
-		std::uint8_t                                   netUpdateAttachment: 1;                       // 18C:4
-		TEnumAsByte<EComponentMobility>                mobility;                                     // 18D
-		TEnumAsByte<EDetailMode>                       detailMode;                                   // 18E
-		FPhysicsVolumeChanged                          physicsVolumeChangedDelegate;                 // 18F
-		FIsRootComponentChanged                        isRootComponentChanged;                       // 190
-		FTransformUpdated                              transformUpdated;                             // 198
-		TArray<FScopedMovementUpdate*>                 scopedMovementStack;                          // 1B0
-		FRotationConversionCache                       worldRotationCache;                           // 1C0
-		FRotationConversionCache                       relativeRotationCache;                        // 200
-		FTransform                                     componentToWorld;                             // 240
+		const FLevelCollection*             cachedLevelCollection;                        // 0A0
+		TWeakObjectPtr<APhysicsVolume>      physicsVolume;                                // 0A8
+		TObjectPtr<USceneComponent>         attachParent;                                 // 0B0
+		FName                               attachSocketName;                             // 0B8
+		TArray<TObjectPtr<USceneComponent>> attachChildren;                               // 0C0
+		TArray<TObjectPtr<USceneComponent>> clientAttachedChildren;                       // 0D0
+		FName                               netOldAttachSocketName;                       // 0E0
+		USceneComponent*                    netOldAttachParent;                           // 0E8
+		FBoxSphereBounds                    bounds;                                       // 0F0
+		FVector                             relativeLocation;                             // 128
+		FRotator                            relativeRotation;                             // 140
+		FVector                             relativeScale3D;                              // 158
+		FVector                             componentVelocity;                            // 170
+		std::uint8_t                        componentToWorldUpdated: 1;                   // 188:0
+		std::uint8_t                        skipUpdateOverlaps: 1;                        // 188:1
+		std::uint8_t                        absoluteLocation: 1;                          // 188:2
+		std::uint8_t                        absoluteRotation: 1;                          // 188:3
+		std::uint8_t                        absoluteScale: 1;                             // 188:4
+		std::uint8_t                        visible: 1;                                   // 188:5
+		std::uint8_t                        shouldBeAttached: 1;                          // 188:6
+		std::uint8_t                        shouldSnapLocationWhenAttached: 1;            // 188:7
+		std::uint8_t                        shouldSnapRotationWhenAttached: 1;            // 189:0
+		std::uint8_t                        shouldSnapScaleWhenAttached: 1;               // 189:1
+		std::uint8_t                        shouldUpdatePhysicsVolume: 1;                 // 189:2
+		std::uint8_t                        hiddenInGame: 1;                              // 189:3
+		std::uint8_t                        boundsChangeTriggersStreamingDataRebuild: 1;  // 189:4
+		std::uint8_t                        useAttachParentBound: 1;                      // 189:5
+		std::uint8_t                        computeFastLocalBounds: 1;                    // 189:6
+		std::uint8_t                        computeBoundsOnceForGame: 1;                  // 189:7
+		std::uint8_t                        computedBoundsOnceForGame: 1;                 // 18A:0
+		bool                                doesSkipOverlapUpdateFromAttachedParent;      // 18B
+		std::uint8_t                        isNotRenderAttachmentRoot: 1;                 // 18C:0
+		std::uint8_t                        disableDetachmentUpdateOverlaps: 1;           // 18C:1
+		std::uint8_t                        wantsOnUpdateTransform: 1;                    // 18C:2
+		std::uint8_t                        netUpdateTransform: 1;                        // 18C:3
+		std::uint8_t                        netUpdateAttachment: 1;                       // 18C:4
+		TEnumAsByte<EComponentMobility>     mobility;                                     // 18D
+		TEnumAsByte<EDetailMode>            detailMode;                                   // 18E
+		FPhysicsVolumeChanged               physicsVolumeChangedDelegate;                 // 18F
+		FIsRootComponentChanged             isRootComponentChanged;                       // 190
+		FTransformUpdated                   transformUpdated;                             // 198
+		TArray<FScopedMovementUpdate*>      scopedMovementStack;                          // 1B0
+		FRotationConversionCache            worldRotationCache;                           // 1C0
+		FRotationConversionCache            relativeRotationCache;                        // 200
+		FTransform                          componentToWorld;                             // 240
 	};
 	static_assert(sizeof(USceneComponent) == 0x2A0);
 }

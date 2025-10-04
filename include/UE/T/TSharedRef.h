@@ -6,55 +6,61 @@ namespace UE
 {
 	class UObject;
 
-	template <class T, ESPMode M = ESPMode::ThreadSafe>
+	template <class T, ESPMode M>
 	class TSharedRef
 	{
+		template <class, ESPMode>
+		friend class TSharedPtr;
+
 	public:
 		template <class U>
-		explicit TSharedRef(U* a_object)
+		explicit TSharedRef(U* a_object) 
 			requires(std::convertible_to<U*, T*>)
 			:
-			object(a_object), sharedReferenceCount(SharedPointerInternals::NewDefaultReferenceController<M>(a_object))
+			m_object(a_object),
+			m_sharedReferenceCount(SharedPointerInternals::NewDefaultReferenceController<M>(a_object))
 		{
 			Init(a_object);
 		}
 
 		TSharedRef(const TSharedRef& a_other) :
-			object(a_other.object), sharedReferenceCount(a_other.sharedReferenceCount)
+			m_object(a_other.m_object), m_sharedReferenceCount(a_other.m_sharedReferenceCount)
 		{}
 
 		TSharedRef(TSharedRef&& a_other) :
-			object(a_other.object), sharedReferenceCount(a_other.sharedReferenceCount)
+			m_object(a_other.m_object), m_sharedReferenceCount(a_other.m_sharedReferenceCount)
 		{}
 
 		T& Get() const
 		{
-			return *object;
+			return *m_object;
 		}
 
-		template <class U>
-		void Init(U* a_object)
+		T& operator*() const
+		{
+			assert(m_object);
+			return *m_object;
+		}
+
+		T* operator->() const
+		{
+			assert(m_object);
+			return m_object;
+		}
+
+	private:
+		template <class T2>
+		void Init(T2* a_object)
 		{
 			assert(a_object);
 
 			SharedPointerInternals::EnableSharedFromThis(this, a_object, a_object);
 		}
 
-		T& operator*() const
-		{
-			assert(object);
-			return *object;
-		}
-
-		T* operator->() const
-		{
-			assert(object);
-			return object;
-		}
-
+	private:
 		// members
-		T*                                           object;                // 00
-		SharedPointerInternals::FSharedReferencer<M> sharedReferenceCount;  // 08
+		T*                                           m_object;                // 000
+		SharedPointerInternals::FSharedReferencer<M> m_sharedReferenceCount;  // 008
 	};
 	static_assert(sizeof(TSharedRef<class _TEST>) == 0x10);
 }

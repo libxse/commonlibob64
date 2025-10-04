@@ -122,6 +122,11 @@ namespace RE::ID
 
 namespace UE::ID
 {
+	namespace FDelegateHandle
+	{
+		inline constexpr REL::ID GenerateNewID{ 107332 };
+	}
+
 	namespace FFrame
 	{
 		inline constexpr REL::ID KismetExecutionMessage{ 116737 };
@@ -183,6 +188,7 @@ namespace UE::ID
 
 	namespace FUObjectArray
 	{
+		inline constexpr REL::ID AllocateSerialNumber{ 116664 };
 		inline constexpr REL::ID GetSingleton{ 1479488 };
 	}
 
@@ -206,6 +212,11 @@ namespace UE::ID
 	namespace UGameplayStatics
 	{
 		inline constexpr REL::ID GetPlayerController{ 220839 };
+	}
+
+	namespace UInputComponent
+	{
+		inline constexpr REL::ID AddActionBinding{ 214241 };
 	}
 
 	namespace UObjectBaseUtility

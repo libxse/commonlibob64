@@ -6,23 +6,23 @@
 
 namespace UE::Core::Private
 {
-	template <class InThreadSafetyMode>
+	template <class M>
 	struct TScriptDelegateTraits
 	{
 		using WeakPtrType = FWeakObjectPtr;
-		using ThreadSafetyMode = InThreadSafetyMode;
+		using ThreadSafetyMode = M;
 		using UnicastThreadSafetyModeForMulticasts = FNotThreadSafeNotCheckedDelegateMode;
 	};
 }
 
 namespace UE
 {
-	template <class InThreadSafetyMode>
+	template <class M = FNotThreadSafeDelegateMode>
 	class TScriptDelegate :
-		public TDelegateAccessHandlerBase<typename Core::Private::TScriptDelegateTraits<InThreadSafetyMode>::ThreadSafetyMode>
+		public TDelegateAccessHandlerBase<typename Core::Private::TScriptDelegateTraits<M>::ThreadSafetyMode>
 	{
 	public:
-		using WeakPtrType = Core::Private::TScriptDelegateTraits<InThreadSafetyMode>::WeakPtrType;
+		using WeakPtrType = Core::Private::TScriptDelegateTraits<M>::WeakPtrType;
 
 		// members
 		WeakPtrType object;

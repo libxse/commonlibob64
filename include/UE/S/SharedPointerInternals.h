@@ -2,14 +2,18 @@
 
 #include "UE/E/ESPMode.h"
 #include "UE/T/TTemplate.h"
+#include "UE/T/TTypeCompatibleBytes.h"
 
 namespace UE
 {
-	template <class T, ESPMode>
+	template <class T, ESPMode M = ESPMode::ThreadSafe>
 	class TSharedFromThis;
 
-	template <class T, ESPMode>
+	template <class T, ESPMode M = ESPMode::ThreadSafe>
 	class TSharedPtr;
+
+	template <class T, ESPMode M = ESPMode::ThreadSafe>
+	class TSharedRef;
 }
 
 namespace UE::SharedPointerInternals
@@ -331,8 +335,7 @@ namespace UE::SharedPointerInternals
 	public:
 		explicit TDeleterHolder(D&& a_other) :
 			D(MoveTemp(a_other))
-		{
-		}
+		{}
 
 		template <class T>
 		void InvokeDeleter(T* a_object)
@@ -347,8 +350,7 @@ namespace UE::SharedPointerInternals
 	public:
 		explicit TDeleterHolder(D&& a_other) :
 			D(MoveTemp(a_other))
-		{
-		}
+		{}
 
 		template <class T>
 		void InvokeDeleter(T* a_object)
@@ -367,7 +369,7 @@ namespace UE::SharedPointerInternals
 	{
 	public:
 		explicit TReferenceControllerWithDeleter(T* a_object, D&& a_deleter) :
-			TDeleterHolder<D>(MoveTemp(a_deleter)), object(a_object)
+			TDeleterHolder<D>(MoveTemp(a_deleter)), m_object(a_object)
 		{}
 
 		TReferenceControllerWithDeleter(const TReferenceControllerWithDeleter&) = delete;
@@ -375,13 +377,49 @@ namespace UE::SharedPointerInternals
 
 		virtual void DestroyObject() override
 		{
-			this->InvokeDeleter(object);
+			this->InvokeDeleter(m_object);
 		}
 
 	private:
 		// members
-		T* object;  // 00
+		T* m_object;  // 000
 	};
+
+	template <class T, ESPMode M>
+	class TIntrusiveReferenceController :
+		public TReferenceControllerBase<M>
+	{
+	public:
+		template <class... Args>
+		explicit TIntrusiveReferenceController(Args&&... a_args)
+		{
+			new ((void*)&m_object) T(std::forward<Args>(a_args)...);
+		}
+
+		TIntrusiveReferenceController(const TIntrusiveReferenceController&) = delete;
+		TIntrusiveReferenceController& operator=(const TIntrusiveReferenceController&) = delete;
+
+		T* GetObjectPtr() const
+		{
+			return reinterpret_cast<T*>(&m_object);
+		}
+
+		virtual void DestroyObject() override
+		{
+			DestructItem(reinterpret_cast<T*>(&m_object));
+		}
+
+	private:
+		// members
+		mutable TTypeCompatibleBytes<T> m_object;  // 000
+	};
+
+	template <class T1, class T2, class T3, ESPMode M>
+	void EnableSharedFromThis(TSharedPtr<T1, M>* a_sharedPtr, const T2* a_object, const TSharedFromThis<T3, M>* a_shared)
+	{
+		if (a_shared)
+			a_shared->UpdateWeakReferenceInternal(a_sharedPtr, const_cast<T2*>(a_object));
+	}
 
 	template <class T1, class T2, class T3, ESPMode M>
 	void EnableSharedFromThis(const TSharedPtr<T1, M>* a_sharedPtr, const T2* a_object, const TSharedFromThis<T3, M>* a_shared)
@@ -390,18 +428,38 @@ namespace UE::SharedPointerInternals
 			a_shared->UpdateWeakReferenceInternal(a_sharedPtr, const_cast<T2*>(a_object));
 	}
 
+	template <class T1, class T2, class T3, ESPMode M>
+	void EnableSharedFromThis(TSharedRef<T1, M>* a_sharedRef, const T2* a_object, const TSharedFromThis<T3, M>* a_shared)
+	{
+		if (a_shared)
+			a_shared->UpdateWeakReferenceInternal(a_sharedRef, const_cast<T2*>(a_object));
+	}
+
+	template <class T1, class T2, class T3, ESPMode M>
+	void EnableSharedFromThis(const TSharedRef<T1, M>* a_sharedRef, const T2* a_object, const TSharedFromThis<T3, M>* a_shared)
+	{
+		if (a_shared)
+			a_shared->UpdateWeakReferenceInternal(a_sharedRef, const_cast<T2*>(a_object));
+	}
+
 	template <class T>
 	struct DefaultDeleter
 	{
-		void operator()(T* a_object)
+		void operator()(T* a_object) const
 		{
 			delete a_object;
 		}
 	};
 
 	template <ESPMode M, class T>
-	inline TReferenceControllerBase<M>* NewDefaultReferenceController(T* a_object)
+	TReferenceControllerBase<M>* NewDefaultReferenceController(T* a_object)
 	{
 		return new TReferenceControllerWithDeleter<T, DefaultDeleter<T>, M>(a_object, DefaultDeleter<T>());
+	}
+
+	template <ESPMode M, class T, class... A>
+	TIntrusiveReferenceController<T, M>* NewIntrusiveReferenceController(A&&... a_args)
+	{
+		return new TIntrusiveReferenceController<T, M>(std::forward<A>(a_args)...);
 	}
 }
