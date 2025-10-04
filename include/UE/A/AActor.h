@@ -1,5 +1,6 @@
 #pragma once
 
+#include "UE/E/EActorUpdateOverlapsMethod.h"
 #include "UE/E/EAutoReceiveInput.h"
 #include "UE/E/ECollisionResponse.h"
 #include "UE/E/EEndPlayReason.h"
@@ -58,22 +59,7 @@ namespace UE
 	class UPrimitiveComponent;
 	class USceneComponent;
 
-	enum class EActorUpdateOverlapsMethod : std::uint8_t
-	{
-		UseConfigDefault,
-		AlwaysUpdate,
-		OnlyUpdateMovable,
-		NeverUpdate
-	};
-
 	enum class ECollisionChannel : std::int32_t;
-
-	enum class ESpawnActorScaleMethod : std::uint8_t
-	{
-		OverrideRootScale,
-		MultiplyWithRoot,
-		SelectDefaultAtRuntime,
-	};
 
 	class AActor :
 		public UObject

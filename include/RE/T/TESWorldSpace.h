@@ -14,6 +14,7 @@
 namespace RE
 {
 	class TESClimate;
+	class TESGrassAreaParam;
 	class TESObjectCELL;
 	class TESRoad;
 	class TESWaterForm;

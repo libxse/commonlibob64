@@ -1,5 +1,7 @@
 #pragma once
 
+#include "UE/E/ESpawnActorCollisionHandlingMethod.h"
+#include "UE/E/ESpawnActorScaleMethod.h"
 #include "UE/T/TPayload.h"
 #include "UE/U/UBlueprintFunctionLibrary.h"
 

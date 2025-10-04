@@ -1,5 +1,6 @@
 #pragma once
 
+#include "UE/F/FDefaultDelegateUserPolicy.h"
 #include "UE/I/IDelegateInstance.h"
 #include "UE/T/TMulticastDelegateBase.h"
 

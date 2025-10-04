@@ -5,6 +5,8 @@
 
 namespace RE
 {
+	class TESForm;
+
 	class TESFullName :
 		public BaseFormComponent
 	{
