@@ -14,7 +14,7 @@ namespace UE
 
 	public:
 		template <class U>
-		explicit TSharedRef(U* a_object) 
+		explicit TSharedRef(U* a_object)
 			requires(std::convertible_to<U*, T*>)
 			:
 			m_object(a_object),

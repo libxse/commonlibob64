@@ -16,7 +16,7 @@ namespace UE
 		public P::FDelegateExtras
 	{
 	public:
-		using FuncType = R (A...);
+		using FuncType = R(A...);
 
 		template <class U2, class... T2>
 		using TMethodPtr = typename TMemFunPtrType<false, U2, R(A..., T2...)>::Type;
