@@ -12,6 +12,7 @@
 #include "UE/F/FObjectSubsystemCollection.h"
 #include "UE/F/FScreenMessageString.h"
 #include "UE/F/FSoftClassPath.h"
+#include "UE/F/FText.h"
 #include "UE/F/FURL.h"
 #include "UE/F/FVector.h"
 #include "UE/F/FVector2.h"
