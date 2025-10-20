@@ -5,6 +5,8 @@
 
 namespace RE
 {
+	class TESFile;
+
 	class GameSettingCollection :
 		public SettingCollectionMap<Setting>
 	{

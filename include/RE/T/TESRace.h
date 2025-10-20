@@ -15,6 +15,7 @@
 
 namespace RE
 {
+	class FaceGenUndo;
 	class TESEyes;
 	class TESHair;
 

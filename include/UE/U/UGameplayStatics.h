@@ -2,13 +2,15 @@
 
 #include "UE/E/ESpawnActorCollisionHandlingMethod.h"
 #include "UE/E/ESpawnActorScaleMethod.h"
+#include "UE/F/FTransform.h"
 #include "UE/T/TPayload.h"
+#include "UE/U/UClass.h"
 #include "UE/U/UBlueprintFunctionLibrary.h"
 
 namespace UE
 {
+	class AActor;
 	class APlayerController;
-	class UObject;
 
 	class UGameplayStatics :
 		public UBlueprintFunctionLibrary

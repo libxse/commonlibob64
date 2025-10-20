@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UE/F/FKey.h"
+#include "UE/T/TBaseDynamicDelegate.h"
 #include "UE/T/TDelegate.h"
 #include "UE/T/TSharedPtr.h"
 
