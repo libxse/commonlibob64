@@ -4,8 +4,8 @@
 #include "UE/E/ESpawnActorScaleMethod.h"
 #include "UE/F/FTransform.h"
 #include "UE/T/TPayload.h"
-#include "UE/U/UClass.h"
 #include "UE/U/UBlueprintFunctionLibrary.h"
+#include "UE/U/UClass.h"
 
 namespace UE
 {
