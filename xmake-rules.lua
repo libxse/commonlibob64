@@ -68,6 +68,8 @@ rule("commonlibob64.plugin")
         target:set("arch", "x64")
         target:set("kind", "shared")
 
+        target:add("deps", "commonlibob64")
+
         target:add("installfiles", target:targetfile(), { prefixdir = "OblivionRemastered/Binaries/Win64/OBSE/Plugins" })
         target:add("installfiles", target:symbolfile(), { prefixdir = "OblivionRemastered/Binaries/Win64/OBSE/Plugins" })
 
