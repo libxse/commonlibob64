@@ -23,6 +23,7 @@ namespace OBSE
 #endif
 		const char* logName{ nullptr };
 		const char* logPattern{ nullptr };
+		std::size_t logRotate{ 0 };
 		bool        trampoline{ false };
 		std::size_t trampolineSize{ 0 };
 		bool        hook{ true };
