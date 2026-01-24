@@ -4,5 +4,5 @@
 
 namespace OBSE
 {
-	using Trampoline = REL::Trampoline;
+	using Trampoline [[deprecated("Use REL::Trampoline instead")]] = REL::Trampoline;
 }
