@@ -99,8 +99,8 @@ namespace RE
 			REX::TEnumSet<Signature, std::uint32_t> signature;        // 00
 			std::uint32_t                           offset;           // 04
 			std::uint32_t                           ctorDispOffset;   // 08
-			RVA<TypeDescriptor>                    typeDescriptor;   // 0C
-			RVA<ClassHierarchyDescriptor>          classDescriptor;  // 10
+			RVA<TypeDescriptor>                     typeDescriptor;   // 0C
+			RVA<ClassHierarchyDescriptor>           classDescriptor;  // 10
 		};
 		static_assert(sizeof(CompleteObjectLocator) == 0x14);
 	}
