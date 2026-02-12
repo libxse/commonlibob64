@@ -1,9 +1,10 @@
 #include "OBSE/API.h"
 #include "OBSE/Interfaces.h"
 
-#include "REL/Hook.h"
+#include "REL/FHookStore.h"
 #include "REL/Trampoline.h"
-#include "REX/REX/Singleton.h"
+
+#include "REX/TSingleton.h"
 #include "REX/W32/OLE32.h"
 #include "REX/W32/SHELL32.h"
 
@@ -17,24 +18,24 @@ namespace OBSE
 	namespace Impl
 	{
 		struct API :
-			public REX::Singleton<API>
+			public REX::TSingleton<API>
 		{
 			void Init(InitInfo, const OBSE::QueryInterface* a_intfc);
 			void InitLog();
 			void InitTrampoline();
-			void InitHook(REL::HOOK_STEP a_step);
+			void InitHook(REL::EHookStep a_step) const;
 
 			InitInfo info;
 
-			std::string   pluginName{};
-			std::string   pluginAuthor{};
-			OBSE::Version pluginVersion{};
+			std::string   pluginName;
+			std::string   pluginAuthor;
+			OBSE::Version pluginVersion;
 
-			OBSE::Version                                    obse64Version{};
-			PluginHandle                                     pluginHandle{ static_cast<PluginHandle>(-1) };
-			std::uint32_t                                    releaseIndex{ 0 };
-			std::function<const void*(OBSEAPI)(const char*)> pluginInfoAccessor;
-			std::string                                      saveFolderName{};
+			OBSE::Version                           obse64Version;
+			PluginHandle                            pluginHandle{ static_cast<PluginHandle>(-1) };
+			std::uint32_t                           releaseIndex{ 0 };
+			std::function<const void*(const char*)> pluginInfoAccessor;
+			std::string                             saveFolderName;
 
 			MessagingInterface*  messagingInterface{ nullptr };
 			TrampolineInterface* trampolineInterface{ nullptr };
@@ -72,8 +73,9 @@ namespace OBSE
 			if (info.log) {
 				static std::once_flag once;
 				std::call_once(once, [&]() {
-					if (saveFolderName.empty())
+					if (saveFolderName.empty()) {
 						return;
+					}
 
 					wchar_t*                                                       knownBuffer{ nullptr };
 					const auto                                                     knownResult = REX::W32::SHGetKnownFolderPath(REX::W32::FOLDERID_Documents, REX::W32::KF_FLAG_DEFAULT, nullptr, std::addressof(knownBuffer));
@@ -115,25 +117,26 @@ namespace OBSE
 				static std::once_flag once;
 				std::call_once(once, [&]() {
 					if (!info.trampolineSize) {
-						const auto hookStore = REL::HookStore::GetSingleton();
+						const auto hookStore = REL::FHookStore::GetSingleton();
 						info.trampolineSize += hookStore->GetSizeTrampoline();
 					}
 
 					auto& trampoline = REL::GetTrampoline();
 					if (const auto intfc = GetTrampolineInterface()) {
-						if (const auto mem = intfc->AllocateFromBranchPool(info.trampolineSize))
+						if (const auto mem = intfc->AllocateFromBranchPool(info.trampolineSize)) {
 							trampoline.set_trampoline(mem, info.trampolineSize);
-						else
+						} else {
 							trampoline.create(info.trampolineSize);
+						}
 					}
 				});
 			}
 		}
 
-		void API::InitHook(REL::HOOK_STEP a_step)
+		void API::InitHook(REL::EHookStep a_step) const
 		{
 			if (info.hook) {
-				const auto hookStore = REL::HookStore::GetSingleton();
+				const auto hookStore = REL::FHookStore::GetSingleton();
 				hookStore->Init();
 				hookStore->Enable(a_step);
 			}
@@ -151,7 +154,7 @@ namespace OBSE
 			api->trampolineInterface = a_intfc->QueryInterface<TrampolineInterface>(PreLoadInterface::kTrampoline);
 
 			api->InitTrampoline();
-			api->InitHook(REL::HOOK_STEP::PRELOAD);
+			api->InitHook(REL::EHookStep::PreLoad);
 		});
 	}
 
@@ -167,7 +170,7 @@ namespace OBSE
 			api->trampolineInterface = a_intfc->QueryInterface<TrampolineInterface>(LoadInterface::kTrampoline);
 
 			api->InitTrampoline();
-			api->InitHook(REL::HOOK_STEP::LOAD);
+			api->InitHook(REL::EHookStep::Load);
 		});
 	}
 

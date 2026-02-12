@@ -51,15 +51,15 @@ namespace RE
 		virtual void         StartFadeIn();                                      // 18
 
 		// members
-		TileMenu*                           tileMenu;         // 18
-		BSSimpleList<Tile::TileTemplate*>   templates;        // 20
-		Tile*                               lastTile;         // 30
-		std::int32_t                        isModal;          // 38
-		std::int32_t                        menuThickness;    // 3C
-		bool                                forceFadeOut;     // 40
-		bool                                deleteTemplates;  // 41
-		REX::Enum<MENU_CLASS, std::int32_t> menuClass;        // 44
-		REX::Enum<FADE_STATE, std::int32_t> fadeState;        // 48
+		TileMenu*                            tileMenu;         // 18
+		BSSimpleList<Tile::TileTemplate*>    templates;        // 20
+		Tile*                                lastTile;         // 30
+		std::int32_t                         isModal;          // 38
+		std::int32_t                         menuThickness;    // 3C
+		bool                                 forceFadeOut;     // 40
+		bool                                 deleteTemplates;  // 41
+		REX::TEnum<MENU_CLASS, std::int32_t> menuClass;        // 44
+		REX::TEnum<FADE_STATE, std::int32_t> fadeState;        // 48
 	};
 	static_assert(sizeof(Menu) == 0x50);
 }

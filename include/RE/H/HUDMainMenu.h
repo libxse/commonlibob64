@@ -42,28 +42,28 @@ namespace RE
 		virtual void         StartFadeIn() override;                                    // 18
 
 		// members
-		Tile*                                  background;         // 050
-		Tile*                                  health;             // 058
-		Tile*                                  magic;              // 060
-		Tile*                                  fatigue;            // 068
-		Tile*                                  weapon;             // 070
-		Tile*                                  spell;              // 078
-		Tile*                                  compass;            // 080
-		Tile*                                  compassFace;        // 088
-		Tile*                                  frame;              // 090
-		Tile*                                  playerGrab;         // 098
-		Tile*                                  activeFXIcons;      // 0A0
-		Tile*                                  levelupIcon;        // 0A8
-		Tile*                                  brackets;           // 0B0
-		REX::Enum<MENU_POSITION, std::int32_t> currentLoc;         // 0B8
-		REX::Enum<MENU_POSITION, std::int32_t> destLoc;            // 0BC
-		BSSimpleList<TESQuestTarget*>*         questList;          // 0C0
-		float                                  mouseDownX;         // 0C8
-		float                                  mouseDownY;         // 0CC
-		float                                  zoomPos;            // 0D0
-		std::uint32_t                          killRegionDisplay;  // 0D4
-		IconArray                              activeFX;           // 0D8
-		bool                                   isVisible;          // 100
+		Tile*                                   background;         // 050
+		Tile*                                   health;             // 058
+		Tile*                                   magic;              // 060
+		Tile*                                   fatigue;            // 068
+		Tile*                                   weapon;             // 070
+		Tile*                                   spell;              // 078
+		Tile*                                   compass;            // 080
+		Tile*                                   compassFace;        // 088
+		Tile*                                   frame;              // 090
+		Tile*                                   playerGrab;         // 098
+		Tile*                                   activeFXIcons;      // 0A0
+		Tile*                                   levelupIcon;        // 0A8
+		Tile*                                   brackets;           // 0B0
+		REX::TEnum<MENU_POSITION, std::int32_t> currentLoc;         // 0B8
+		REX::TEnum<MENU_POSITION, std::int32_t> destLoc;            // 0BC
+		BSSimpleList<TESQuestTarget*>*          questList;          // 0C0
+		float                                   mouseDownX;         // 0C8
+		float                                   mouseDownY;         // 0CC
+		float                                   zoomPos;            // 0D0
+		std::uint32_t                           killRegionDisplay;  // 0D4
+		IconArray                               activeFX;           // 0D8
+		bool                                    isVisible;          // 100
 	};
 	static_assert(sizeof(HUDMainMenu) == 0x108);
 }

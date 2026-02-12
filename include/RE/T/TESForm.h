@@ -227,11 +227,11 @@ namespace RE
 		}
 
 		// members
-		REX::Enum<FormType, std::uint8_t> formType;    // 08
-		std::uint32_t                     formFlags;   // 0C
-		TESFormID                         formID;      // 10
-		BSSimpleList<TESFile*>            files;       // 18
-		ExportTESForm*                    exportForm;  // 28
+		REX::TEnum<FormType, std::uint8_t> formType;    // 08
+		std::uint32_t                      formFlags;   // 0C
+		TESFormID                          formID;      // 10
+		BSSimpleList<TESFile*>             files;       // 18
+		ExportTESForm*                     exportForm;  // 28
 	};
 	static_assert(sizeof(TESForm) == 0x30);
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
 	<Type Name="REL::Relocation&lt;*&gt;">
 		<DisplayString>{($T1)_impl}</DisplayString>
@@ -6,8 +6,8 @@
 			<Item Name="[object]">($T1)_impl</Item>
 		</Expand>
 	</Type>
-	
-	<Type Name="REX::EnumSet&lt;*&gt;">
+
+	<Type Name="REX::TEnumSet&lt;*&gt;">
 		<DisplayString Optional="true">{static_cast&lt;$T1&gt;(_impl),en}</DisplayString>
 	</Type>
 

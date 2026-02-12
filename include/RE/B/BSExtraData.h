@@ -16,8 +16,8 @@ namespace RE
 		virtual bool Compare(BSExtraData* a_other) const;  // 001
 
 		// members
-		REX::Enum<EXTRA_DATA_TYPE, std::uint8_t> type;  // 008
-		BSExtraData*                             next;  // 010
+		REX::TEnum<EXTRA_DATA_TYPE, std::uint8_t> type;  // 008
+		BSExtraData*                              next;  // 010
 	};
 	static_assert(sizeof(BSExtraData) == 0x18);
 }
