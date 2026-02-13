@@ -31,8 +31,9 @@ namespace UE
 			result = static_cast<T>(grow);
 		}
 
-		if (a_num > result)
+		if (a_num > result) {
 			result = std::numeric_limits<T>::max();
+		}
 
 		return result;
 	}
@@ -45,9 +46,10 @@ namespace UE
 		assert(a_num > 0);
 
 		if (a_allowQuantize) {
-			result = static_cast<T>(FMemory::QuantizeSize(static_cast<std::size_t>(result) * static_cast<std::size_t>(a_numBytes), a_alignment) / a_numBytes);
-			if (a_num > result)
+			result = static_cast<T>(FMemory::QuantizeSize(static_cast<std::size_t>(result) * a_numBytes, a_alignment) / a_numBytes);
+			if (a_num > result) {
 				result = std::numeric_limits<T>::max();
+			}
 		}
 
 		return result;
@@ -64,8 +66,9 @@ namespace UE
 		const std::size_t slackBytes = (a_numAlloc - a_num) * a_numBytes;
 		if ((slackBytes >= 16384 || 3 * a_num < 2 * a_numAlloc) && (slackElements > 64 || !a_num)) {
 			result = a_num;
-			if (result > 0 && a_allowQuantize)
-				result = (T)(FMemory::QuantizeSize(result * a_numBytes, a_alignment) / a_numBytes);
+			if (result > 0 && a_allowQuantize) {
+				result = static_cast<T>((FMemory::QuantizeSize(result * a_numBytes, a_alignment) / a_numBytes));
+			}
 		} else {
 			result = a_numAlloc;
 		}
@@ -90,8 +93,9 @@ namespace UE
 
 			~ForAnyElementType()
 			{
-				if (data)
+				if (data) {
 					M::Free(data);
+				}
 			}
 
 			SizeType CalculateSlackReserve(SizeType a_num, std::size_t a_numBytes) const
@@ -139,13 +143,14 @@ namespace UE
 				return data;
 			}
 
-			void ResizeAllocation(SizeType a_numPrevious, SizeType a_num, std::size_t a_numBytes)
+			void ResizeAllocation(SizeType, SizeType a_num, std::size_t a_numBytes)
 			{
 				if (data || a_num) {
 					bool invalid = a_num < 0 || a_numBytes < 1 || a_numBytes > static_cast<std::size_t>(std::numeric_limits<std::int32_t>::max());
 
-					if constexpr (sizeof(SizeType) == sizeof(std::size_t))
+					if constexpr (sizeof(SizeType) == sizeof(std::size_t)) {
 						invalid = invalid || (static_cast<std::size_t>(static_cast<USizeType>(a_num)) > static_cast<std::size_t>(std::numeric_limits<SizeType>::max()) / a_numBytes);
+					}
 
 					assert(!invalid);
 
@@ -158,8 +163,9 @@ namespace UE
 				if (data || a_num) {
 					bool invalid = a_num < 0 || a_numBytes < 1 || a_numBytes > static_cast<std::size_t>(std::numeric_limits<std::int32_t>::max());
 
-					if constexpr (sizeof(SizeType) == sizeof(std::size_t))
+					if constexpr (sizeof(SizeType) == sizeof(std::size_t)) {
 						invalid = invalid || (static_cast<std::size_t>(static_cast<USizeType>(a_num)) > static_cast<std::size_t>(std::numeric_limits<SizeType>::max()) / a_numBytes);
+					}
 
 					assert(!invalid);
 

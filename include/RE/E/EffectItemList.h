@@ -8,8 +8,7 @@ namespace RE
 	class Actor;
 	class EffectItem;
 
-	class EffectItemList :
-		public BSSimpleList<EffectItem*>
+	class EffectItemList
 	{
 	public:
 		// add
@@ -18,7 +17,8 @@ namespace RE
 		virtual SkillLevel::Value GetLevel();               // 02
 
 		// members
-		std::int32_t hostileCount;  // 18
+		BSSimpleList<EffectItem*> effectList;    // 08
+		std::int32_t              hostileCount;  // 18
 	};
 	static_assert(sizeof(EffectItemList) == 0x20);
 }

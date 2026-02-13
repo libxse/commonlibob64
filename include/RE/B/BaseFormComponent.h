@@ -14,7 +14,7 @@ namespace RE
 		virtual void CopyComponent(BaseFormComponent* a_rhs);     // 02
 		virtual bool CompareComponent(BaseFormComponent* a_rhs);  // 03
 
-		TES_HEAP_REDEFINE_NEW();
+		TES4_DEFINE_NEW();
 	};
 	static_assert(sizeof(BaseFormComponent) == 0x8);
 }

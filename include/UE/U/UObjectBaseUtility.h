@@ -73,9 +73,15 @@ namespace UE
 		}
 
 		template <class T>
+		static bool IsChildOf(const T* a_classA, const T* a_classB)
+		{
+			a_classA->IsChildOf(a_classB);
+		}
+
+		template <class T>
 		bool IsA(const T* a_class) const
 		{
-			return GetClass()->IsChildOf(a_class);
+			return IsChildOf(GetClass(), a_class);
 		}
 
 		template <class T>

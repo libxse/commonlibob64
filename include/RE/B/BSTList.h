@@ -71,7 +71,7 @@ namespace RE
 				return *this;
 			}
 
-			TES_HEAP_REDEFINE_NEW();
+			TES4_DEFINE_NEW();
 
 			// members
 			value_type item;  // 00
@@ -207,7 +207,7 @@ namespace RE
 			return *this;
 		}
 
-		TES_HEAP_REDEFINE_NEW();
+		TES4_DEFINE_NEW();
 
 		[[nodiscard]] inline reference front()
 		{

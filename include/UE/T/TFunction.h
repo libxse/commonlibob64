@@ -138,7 +138,7 @@ namespace UE::Core::Private::Function
 			TFunction_OwnedObject<T, H>(MoveTemp(a_object))
 		{}
 
-		virtual void* CloneToEmptyStorage(void* a_storage) const override
+		virtual void* CloneToEmptyStorage(void*) const override
 		{
 			assert(false);
 			return nullptr;

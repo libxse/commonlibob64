@@ -75,7 +75,7 @@ namespace UE
 			return FMemory::Malloc(a_count * sizeof(T));
 		}
 
-		void FreeBuffer(void* a_buffer, std::size_t a_count)
+		void FreeBuffer(void* a_buffer, std::size_t)
 		{
 			FMemory::Free(a_buffer);
 		}

@@ -20,7 +20,7 @@ namespace RE
 		float GetTime() const;
 		float GetTimeScale() const;
 		float GetYear() const;
-		void  SetTimeScale(float a_value);
+		void  SetTimeScale(float a_value) const;
 
 		// members
 		TESGlobal* gameYear;        // 000
@@ -35,44 +35,45 @@ namespace RE
 
 namespace RE
 {
-	float Calendar::GetDay() const
+	inline float Calendar::GetDay() const
 	{
 		return gameDay ? gameDay->value : 17.0F;
 	}
 
-	float Calendar::GetDaysPassed() const
+	inline float Calendar::GetDaysPassed() const
 	{
 		return gameDaysPassed ? gameDaysPassed->value : 1.0F;
 	}
 
-	float Calendar::GetHour() const
+	inline float Calendar::GetHour() const
 	{
 		return gameHour ? gameHour->value : 12.0F;
 	}
 
-	float Calendar::GetMonth() const
+	inline float Calendar::GetMonth() const
 	{
 		return gameMonth ? gameMonth->value : 7.0F;
 	}
 
-	float Calendar::GetTime() const
+	inline float Calendar::GetTime() const
 	{
-		return GetDaysPassed() + (GetHour() / 24.0f);
+		return GetDaysPassed() + (GetHour() / 24.0F);
 	}
 
-	float Calendar::GetTimeScale() const
+	inline float Calendar::GetTimeScale() const
 	{
 		return timeScale->value;
 	}
 
-	float Calendar::GetYear() const
+	inline float Calendar::GetYear() const
 	{
 		return gameYear ? gameYear->value : 427.0F;
 	}
 
-	void Calendar::SetTimeScale(float a_value)
+	inline void Calendar::SetTimeScale(float a_value) const
 	{
-		if (timeScale)
+		if (timeScale) {
 			timeScale->value = a_value;
+		}
 	}
 }

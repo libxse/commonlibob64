@@ -41,4 +41,10 @@ target("commonlibob64", function ()
 
     -- set precompiled header
     set_pcxxheader("include/OBSE/Impl/PCH.h")
+
+    -- add flags (clang-cl: disable warnings) (public)
+    add_cxxflags(
+        "clang_cl::-Wno-undefined-bool-conversion",
+        { public = true }
+    )
 end)
