@@ -1,11 +1,14 @@
 #pragma once
+
 #include "RE/A/ACTOR_BASE_DATA.h"
 #include "RE/B/BSTList.h"
 #include "RE/B/BaseFormComponent.h"
+
 namespace RE
 {
 	class FACTION_RANK;
 	class TESLevItem;
+
 	struct TESActorBaseData :
 		public BaseFormComponent
 	{
