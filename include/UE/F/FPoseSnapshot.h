@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UE/F/FName.h"
+#include "UE/F/FTransform.h"
 #include "UE/T/TArray.h"
 #include "UE/T/TTransform.h"
 

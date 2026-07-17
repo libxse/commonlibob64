@@ -21,7 +21,10 @@ namespace RE
 	class BSFaceGenAnimationData;
 	class BSFaceGenNiNode;
 	class hkRigidBody;
+	class MagicCaster;
+	class MagicTarget;
 	class NiAVObject;
+	class NiNode;
 	class TESActorBase;
 	class TESObjectCELL;
 	class TargetEntry;
