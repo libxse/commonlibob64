@@ -9,6 +9,7 @@
 #include "UE/F/FDirectoryPath.h"
 #include "UE/F/FExec.h"
 #include "UE/F/FFrameRate.h"
+#include "UE/F/FLinearColor.h"
 #include "UE/F/FObjectSubsystemCollection.h"
 #include "UE/F/FScreenMessageString.h"
 #include "UE/F/FSoftClassPath.h"
@@ -16,6 +17,7 @@
 #include "UE/F/FURL.h"
 #include "UE/F/FVector.h"
 #include "UE/F/FVector2.h"
+#include "UE/T/TIndirectArray.h"
 #include "UE/T/TSharedPtr.h"
 #include "UE/U/UObject.h"
 

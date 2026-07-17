@@ -3,6 +3,8 @@
 #include "UE/E/EComponentCreationMethod.h"
 #include "UE/E/EEndPlayReason.h"
 #include "UE/E/ELifetimeCondition.h"
+#include "UE/E/ETeleportType.h"
+#include "UE/E/EUpdateTransformFlags.h"
 #include "UE/F/FActorComponentTickFunction.h"
 #include "UE/F/FTypedElementHandle.h"
 #include "UE/I/IInterface_AssetUserData.h"
