@@ -1,9 +1,9 @@
 #pragma once
 
+#include "UE/V/VPairingEntry.h"
+
 namespace UE
 {
-	class VPairingEntry;
-
 	class VHandlerClassBase
 	{
 	public:
