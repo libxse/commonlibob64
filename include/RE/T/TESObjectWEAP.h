@@ -3,6 +3,7 @@
 #include "RE/O/OBJ_WEAP.h"
 #include "RE/T/TESAttackDamageForm.h"
 #include "RE/T/TESBoundObject.h"
+#include "RE/T/TESEnchantableForm.h"
 #include "RE/T/TESFullName.h"
 #include "RE/T/TESHealthForm.h"
 #include "RE/T/TESIcon.h"
