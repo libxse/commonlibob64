@@ -187,9 +187,22 @@ namespace OBSE
 
 	struct PluginVersionData
 	{
+	public:
 		enum Version : std::uint32_t
 		{
 			kVersion = 1
+		};
+
+		enum
+		{
+			kAddressIndependence_Signatures = 1 << 0,
+			kAddressIndependence_AddressLibrary = 1 << 1,
+		};
+
+		enum
+		{
+			kStructureIndependence_NoStructs = 1 << 0,
+			kStructureIndependence_InitialLayout = 1 << 1,
 		};
 
 		constexpr void PluginVersion(const OBSE::Version a_version) noexcept { pluginVersion = a_version.pack(); }
@@ -204,15 +217,13 @@ namespace OBSE
 
 		[[nodiscard]] constexpr std::string_view GetAuthorName() const noexcept { return std::string_view{ author }; }
 
-		constexpr void UsesSigScanning(const bool a_value) noexcept { SetOrClearBit(addressIndependence, 1 << 0, a_value); }
+		constexpr void UsesSigScanning(const bool a_value) noexcept { SetOrClearBit(addressIndependence, kAddressIndependence_Signatures, a_value); }
 
-		// 1 << 1 is for Address Library
-		constexpr void UsesAddressLibrary(const bool a_value) noexcept { SetOrClearBit(addressIndependence, 1 << 1, a_value); }
+		constexpr void UsesAddressLibrary(const bool a_value) noexcept { SetOrClearBit(addressIndependence, kAddressIndependence_AddressLibrary, a_value); }
 
-		constexpr void HasNoStructUse(const bool a_value) noexcept { SetOrClearBit(structureIndependence, 1 << 0, a_value); }
+		constexpr void HasNoStructUse(const bool a_value) noexcept { SetOrClearBit(structureIndependence, kStructureIndependence_NoStructs, a_value); }
 
-		// 1 << 1 is for runtime 0.411.140 and later
-		constexpr void IsLayoutDependent(const bool a_value) noexcept { SetOrClearBit(structureIndependence, 1 << 1, a_value); }
+		constexpr void IsLayoutDependent(const bool a_value) noexcept { SetOrClearBit(structureIndependence, kStructureIndependence_InitialLayout, a_value); }
 
 		constexpr void CompatibleVersions(std::initializer_list<OBSE::Version> a_versions) noexcept
 		{
